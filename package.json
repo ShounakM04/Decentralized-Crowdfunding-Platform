@@ -4,12 +4,12 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "mocha",
-    "dev": "node server.js",
-    "build": "next build",
-    "start": "NODE_ENV=production node server.js",
-    "postinstall": "prisma generate"
-  },
+  "test": "mocha",
+  "dev": "node server.js",
+  "build": "next build",
+  "start": "node server.js",
+  "postinstall": "prisma generate"
+},
   "author": "",
   "license": "ISC",
   "dependencies": {
