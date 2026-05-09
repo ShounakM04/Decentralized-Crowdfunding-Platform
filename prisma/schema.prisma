@@ -1,0 +1,30 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  ethAddress  String     @id @unique
+  username    String?
+  bio         String?
+  nonce       String     @default(uuid()) // A random string for MetaMask to sign
+  createdAt   DateTime   @default(now())
+  
+  campaigns   Campaign[] 
+}
+
+model Campaign {
+  id              String   @id @default(uuid())
+  ethAddress      String   @unique
+  title           String
+  description     String   @db.Text
+  imageUrl        String?
+  creatorAddress  String
+  createdAt       DateTime @default(now())
+  
+  creator         User     @relation(fields: [creatorAddress], references: [ethAddress])
+}
